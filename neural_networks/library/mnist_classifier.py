@@ -30,10 +30,11 @@ y_test = keras.utils.to_categorical(y_test, num_classes)
 
 model = Sequential()
 model.add(Flatten(batch_input_shape=(None,28, 28)))
+model.add(Dense(128, activation="relu"))
 model.add(Dense(num_classes, activation="softmax"))
 
 model.compile(loss=keras.losses.categorical_crossentropy,
-              optimizer=keras.optimizers.SGD(),
+              optimizer=keras.optimizers.Adam(),
               metrics=['accuracy'])
 
 model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs,
